@@ -1,0 +1,32 @@
+/* Все стили в одном файле, так проще */
+.card {
+    width: 300px;
+    border: 1px solid #cccccc;
+    padding: 15px;
+    margin: 20px;
+}
+
+.card-img {
+    width: 100%; /* Растягиваем картинку на всю ширину карточки */
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.card-description {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.card-button {
+    display: block; /* Чтобы ссылка вела себя как блок */
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 15px;
+    text-decoration: none; /* Убираем подчеркивание у ссылки */
+}
