@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TurboCore(Advanced)</title>
+    <style>
+
+        :root {
+
+            --clr-primary: #F35A05;
+            --clr-text-main: #07040C;
+            --clr-text-muted: #585967;
+            --clr-border: #E2E3EF;
+            --clr-white: #ffffff;
+
+            /* Spacing & Sizes (Fluid) */
+            --container-w: 1280px;
+            --fs-h1: clamp(2.5rem, 5vw, 3.75rem); /* 40px -> 60px */
+            --fs-body: clamp(1rem, 1.5vw, 1.25rem);
+        }
+
+        /* Reset & Base */
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--clr-text-main);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .container {
+            width: min(100% - 2rem, var(--container-w)); /* Адаптивный контейнер */
+            margin-inline: auto;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Utility Classes */
+        .flex-group { display: flex; align-items: center; gap: 1rem; }
+        .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+        /* --- Header --- */
+        .site-header {
+            border-bottom: 1px solid var(--clr-border);
+            padding-block: 1.25rem;
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px); /* Современный эффект */
+            z-index: 100;
+        }
+
+        .site-header__inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .brand__name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--clr-primary);
+            line-height: 1;
+        }
+
+        .brand__tagline {
+            font-size: 0.8125rem;
+            font-weight: 500;
+            display: block;
+        }
+
+        .nav-list {
+            display: flex;
+            gap: clamp(1rem, 3vw, 2.5rem);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-list__link {
+            text-decoration: none;
+            color: var(--clr-text-main);
+            font-weight: 500;
+            font-size: 0.875rem;
+            position: relative;
+        }
+
+        /* Анимация подчеркивания */
+        .nav-list__link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--clr-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-list__link:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.8em 2em;
+            border-radius: 100vmax;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 0.875rem;
+        }
+
+        .btn:active { transform: scale(0.98); }
+
+        .btn--outline {
+            border: 1px solid currentColor;
+            color: var(--clr-text-main);
+            background: transparent;
+        }
+
+        .btn--outline:hover {
+            background: var(--clr-text-main);
+            color: var(--clr-white);
+        }
+
+        .btn--primary {
+            background: var(--clr-primary);
+            color: var(--clr-white);
+            border: 1px solid var(--clr-primary);
+            text-transform: uppercase;
+        }
+
+        .btn--primary:hover {
+            background: var(--clr-white);
+            color: var(--clr-primary);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding-block: clamp(3rem, 8vw, 6rem); /* Адаптивный вертикальный паддинг */
+            overflow: hidden;
+        }
+
+        .hero__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: clamp(2rem, 5vw, 6rem);
+        }
+
+        .hero__title {
+            font-size: var(--fs-h1);
+            line-height: 1.1;
+            margin-block-end: 1.5rem;
+            text-wrap: balance; /* Балансирует текст заголовка, чтобы не было висячих слов */
+        }
+
+        .hero__lead {
+            font-size: var(--fs-body);
+            color: var(--clr-text-muted);
+            margin-block-end: 2.5rem;
+            max-width: 30ch; /* Ограничение ширины строки для читаемости */
+        }
+
+        .hero__promo-text {
+            color: #808296;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        /* Адаптив "из коробки" через Grid */
+        @media (max-width: 900px) {
+            .site-header__inner { flex-wrap: wrap; gap: 1rem; }
+            .nav { display: none; /* Тут обычно бургер меню */ }
+            .hero__grid { grid-template-columns: 1fr; text-align: center; }
+            .hero__grid img { margin-inline: auto; order: -1; } /* Картинка сверху на мобиле */
+            .flex-group { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container site-header__inner">
+        <a href="/" class="brand" aria-label="На главную TurboCore">
+            <img src="image/logo.svg" alt="" aria-hidden="true" width="55" height="55">
+            <div class="brand__text">
+                <span class="brand__name">TurboCore</span>
+                <span class="brand__tagline">семантика за минуту</span>
+            </div>
+        </a>
+
+        <nav class="nav" aria-label="Основная навигация">
+            <ul class="nav-list">
+                <li><a href="#how" class="nav-list__link">КАК РАБОТАЕТ</a></li>
+                <li><a href="#prices" class="nav-list__link">ЦЕНЫ</a></li>
+                <li><a href="#faq" class="nav-list__link">ЧАСТЫЕ ВОПРОСЫ</a></li>
+            </ul>
+        </nav>
+
+        <a href="/login" class="btn btn--outline">Вход</a>
+    </div>
+</header>
+
+<main>
+    <section class="hero" aria-labelledby="hero-title">
+        <div class="container hero__grid">
+            <div class="hero__content">
+                <h1 id="hero-title" class="hero__title">Готовая семантика <br> за 1 минуту</h1>
+                <p class="hero__lead">Сервис автоматического сбора очищенных запросов для любой страницы сайта</p>
+
+                <div class="flex-group">
+                    <a href="/try" class="btn btn--primary">Попробовать</a>
+                    <div class="hero__promo-text">
+                        При регистрации 500 ₽,<br>
+                        хватит чтобы влюбиться
+                        <img src="image/love.svg" alt="влюбленный смайлик" style="display:inline; vertical-align: middle;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero__media">
+                <img src="image/sectionone_right.svg" alt="Иллюстрация процесса сбора семантики" width="552" height="423" loading="eager">
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

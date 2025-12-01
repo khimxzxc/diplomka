@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>TurboCore(Intermediate)</title>
+    <style>
+        :root {
+            --color-primary: #F35A05;
+            --color-text: #07040C;
+            --color-text-gray: #585967;
+            --color-border: #E2E3EF;
+            --container-width: 1280px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--color-text);
+            margin: 0;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            border-bottom: 1px solid var(--color-border);
+            padding: 20px 0;
+        }
+
+        .header__inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo__title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-primary);
+            display: block;
+        }
+
+        .logo__subtitle {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--color-text);
+        }
+
+        .nav__list {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav__link {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav__link:hover {
+            color: var(--color-primary);
+        }
+
+        .btn-outline {
+            padding: 10px 30px;
+            border: 1px solid var(--color-text);
+            border-radius: 30px;
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background-color: #000;
+            color: #fff;
+            border-color: #000;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 60px 0;
+        }
+
+        .hero__container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero__content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero__title {
+            font-size: 60px;
+            line-height: 1.1;
+            margin: 0 0 24px;
+        }
+
+        .hero__description {
+            font-size: 20px;
+            color: var(--color-text-gray);
+            margin: 0 0 40px;
+            line-height: 1.5;
+        }
+
+        .hero__actions {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: #fff;
+            border: none;
+            padding: 22px 56px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .hero__note {
+            display: flex;
+            align-items: flex-end;
+            gap: 5px;
+            color: #808296;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="container header__inner">
+        <a href="#" class="logo">
+            <img src="image/logo.svg" alt="Логотип TurboCore" width="55" height="55">
+            <div class="logo__text">
+                <span class="logo__title">TurboCore</span>
+                <span class="logo__subtitle">семантика за минуту</span>
+            </div>
+        </a>
+
+        <nav class="nav">
+            <ul class="nav__list">
+                <li><a href="#" class="nav__link">КАК РАБОТАЕТ</a></li>
+                <li><a href="#" class="nav__link">ЦЕНЫ</a></li>
+                <li><a href="#" class="nav__link">ЧАСТЫЕ ВОПРОСЫ</a></li>
+            </ul>
+        </nav>
+
+        <a href="#" class="btn-outline">ВХОД</a>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container hero__container">
+        <div class="hero__content">
+            <h1 class="hero__title">Готовая семантика<br>за 1 минуту</h1>
+            <p class="hero__description">Сервис автоматического сбора очищенных запросов для любой страницы сайта</p>
+
+            <div class="hero__actions">
+                <button class="btn-primary">ПОПРОБОВАТЬ</button>
+                <div class="hero__note">
+                    <p>При регистрации 500 ₽,<br>хватит чтобы влюбиться</p>
+                    <img src="image/love.svg" alt="смайлик" width="20">
+                </div>
+            </div>
+        </div>
+
+        <div class="hero__image">
+            <img src="image/sectionone_right.svg" alt="Иллюстрация аналитики" style="max-width: 100%;">
+        </div>
+    </div>
+</section>
+</body>
+</html>
